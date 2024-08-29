@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Results</title>
+</head>
+<body>
+    <style>
+        /* Basic styles for the results container */
+#result {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+#result h2 {
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Paragraph styles */
+#result p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Strong text styles */
+#result strong {
+    color: #4CAF50;
+}
+
+/* Styles for diet plan */
+#result p:last-child {
+    font-style: italic;
+}
+
+/* Link styles */
+#result a {
+    color: #007BFF;
+    text-decoration: none
+}
+
+#result a:hover {
+    text-decoration: underline;
+}
+#result h3{
+    font-family:'calibri';
+    color:green;
+   }
+
+    </style>
+    <h1>Your Diet Results</h1>
+    <div id="result"></div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const result = {};
+            for (const [key, value] of params.entries()) {
+                result[key] = decodeURIComponent(value);
+            }
+            return result;
+        }
+
+        // Display the results
+        function displayResults() {
+            const params = getQueryParams();
+            document.getElementById('result').innerHTML = `
+                <h2>Your Results</h2>
+                <p><strong>BMI:</strong> ${params.bmi}</p>
+                <p><strong>BMR:</strong> ${params.bmr} calories/day</p>
+                <p><strong>Daily Caloric Needs:</strong> ${params.caloricNeeds} calories/day</p>
+                <p><strong>Recommendation:</strong> ${params.recommendation}</p>
+                <h3><strong>Your Diet Plan:</strong> ${params.dietplan}</p>
+            `;
+        }
+
+        // Call the function on page load
+        window.onload = displayResults;
+    </script>
+</body>
+</html>
+
